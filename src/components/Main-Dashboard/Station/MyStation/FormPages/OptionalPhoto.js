@@ -1,332 +1,248 @@
-import React, { useState } from 'react'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { Box } from '@mui/system';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import CancelIcon from '@mui/icons-material/Cancel';
-import { InputLabel, MenuItem, Typography, Select } from '@mui/material';
-import { FormControl } from 'react-bootstrap';
+import React, { useState } from "react";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { Box } from "@mui/system";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import CancelIcon from "@mui/icons-material/Cancel";
+import { InputLabel, MenuItem, Typography, Select } from "@mui/material";
+import { FormControl } from "react-bootstrap";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import { pink } from "@mui/material/colors";
+import Form from "react-bootstrap/Form";
+
 
 
 
 const OptionalPhoto = () => {
-  let left=[["l","m"]]
-  const [opencolor , setOpenColor] = useState(false);
-  const [opencolors , setOpenColors] = useState(false);
-  const [cname , setcname] = useState("selct cfrh5fdolor=");
-  const [isChecked, setIsChecked] = useState(false);
+  const [style, setstyle] = useState({
+    Font: "",
+    Color: "",
+    Background: "",
+    Fsize: "",
+    TextPosition:""
+  });
+
+  const [styleopen , SetStyleOpen] = useState(false);
 
 
-  console.log(opencolor)
-  
 
-  const handleClick = React.useCallback(() => {
-    setOpenColor("red")
-  }, [opencolor]);
-  const handleClicks = React.useCallback(() => {
-    setOpenColors(!opencolors)
-  }, [opencolors]);
-  function handleCheckboxChange(event) {
-    setIsChecked(event.target.checked);
-  }
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const handlechanged = (e) => {
+    e.preventDefault();
+    const { value, name } = e.target;
 
+    setstyle({ ...style, [name]: value });
+    console.log(style);
+  };
 
- const  FONTSLIST = [
-    {
-        name: "Source Sans Pro",
-        face: "Source+Sans+Pro:900italic",
-        fontFamily: "Source Sans Pro",
-        fontWeight: 900,
-        fontStyle: 'italic'
-    },
-    {
-        name: "Quattrocento Sans",
-        face: "Quattrocento+Sans",
-        fontWeight: 500,
-        fontFamily: 'Quattrocento Sans'
-    },
-    {
-        name: "Ubuntu",
-        face: "Ubuntu:700",
-        fontFamily: 'Ubuntu'
-    },
-    {
-        name: "Arizonia",
-        face: "Arizonia",
-        fontFamily: 'Arizonia'
-    } ,
-    {
-        name: "Lora",
-        face: "Lora:700",
-        fontFamily: "Lora",
-        fontWeight: 700
-    },
-    {
-        name: "Sansita One",
-        face: "Sansita+One",
-        fontFamily: "Sansita One"
-    },
-    {
-        name: "Armata",
-        face: "Armata",
-        fontFamily: "Armata"
-    },
-    {
-        name: "Black Ops One",
-        face: "Black+Ops+One",
-        fontFamily: "Black Ops One"
-    },
-    {
-        name: "Russo One",
-        face: "Russo+One",
-        fontFamily: "Russo One"
-    }
-]
-const Color = [
-    {
-      "font-size":12,
-      "color": "black",
-      "category": "hue",
-      "type": "primary",
-      "code": {
-        "rgba": [255,255,255,1],
-        "hex": "#000"
-      }
-    },
-    {
-      "color": "white",
-      "category": "value",
-      "code": {
-        "rgba": [0,0,0,1],
-        "hex": "#FFF"
-      }
-    },
-    {
-      "color": "red",
-      "category": "hue",
-      "type": "primary",
-      "code": {
-        "rgba": [255,0,0,1],
-        "hex": "#FF0"
-      }
-    },
-    {
-      "color": "blue",
-      "category": "hue",
-      "type": "primary",
-      "code": {
-        "rgba": [0,0,255,1],
-        "hex": "#00F"
-      }
-    },
-    {
-      "color": "yellow",
-      "category": "hue",
-      "type": "primary",
-      "code": {
-        "rgba": [255,255,0,1],
-        "hex": "#FF0"
-      }
-    },
-    {
-      "color": "green",
-      "category": "hue",
-      "type": "secondary",
-      "code": {
-        "rgba": [0,255,0,1],
-        "hex": "#0F0"
-      }
-    }
-]
-const[font,setfont]=useState(FONTSLIST)
   return (
     <Container>
-      <Row className='justify-content-start optionalPhoto_Box'>
+      <Row className="justify-content-start optionalPhoto_Box">
         <Col md={8}>
           <Box className="optionalPhoto mb-2">
-            <Box className="">
-              <AddCircleOutlineIcon/>
-              <Box className="text_style">
+            <Box className="" >
+              <AddCircleOutlineIcon onClick={()=>SetStyleOpen(true)} />
+              {
+                styleopen && 
+                <Box className="text_style">
                 <Box className="border-bottom head">
                   <Box></Box>
-                  <Box><CancelIcon/></Box>
+                  <Box onClick={()=>SetStyleOpen(false)}>
+                    <CancelIcon   />
+                  </Box>
                 </Box>
                 <Box>
-                  <Container>
-                  <Row className='justify-content-start mt-2'>
-                    <Col md={8} className="text-left">
-                      <Typography>Text Style:</Typography>
-                      <Box className="my-1">
-                        <Row>
-                          <Col md={3}>
-                          <div><label>Font</label></div>
-                          </Col>
-                          <Col md={9}>
-                          <div>
-                        <select className='form-control fs-16'>
-                         
-                          {
-                        font  &&    font.map((f)=>{
-                              const {name , face, fontFamily,fontWeight,fontStyle} = f;
-                              return(
-                               
-                                  <option key={name} style={{
-                                 fontFamily:{fontFamily},
-                                 fontWeight:{fontWeight},
-                                 fontStyle:{fontStyle}
+                  <Container className="my-3">
+                    <Row className="justify-content-start">
+                      <Col md={8} className="text-left">
+                        <Typography>Text Style</Typography>
 
-                          }}>{name}</option>
-                             
-                              )
-                            })
-                          }
-                        </select>
-                        </div>
-                          </Col>
-                        </Row>
-                      </Box>
+                        {/* font  */}
+                        <Box
+                          className="mb-3 d-flex justify-content-between align-items-center"
+                          component="form"
+                          sx={{
+                            "& .MuiTextField-root": { m: 1, width: "25ch" },
+                          }}
+                          noValidate
+                          autoComplete="off"
+                        >
+                          <Box>
+                            <Typography className="fs-13">Font</Typography>
+                          </Box>
+                          <Box className="text_style_option">
+                            <Form.Select
+                              aria-label="Default select example"
+                              name="Font"
+                              Value={style.Font}
+                              onChange={handlechanged}
+                            >
+                              <option  value="Select Font ">Select Font</option>
+                              <option  value="Aclonica">Aclonica</option>
+                              <option  value="Allan">Allan</option>
 
-                      <Box className="my-1">
-                        <Row>
-                          <Col md={3}>
-                          <div><label>Color</label></div>
-                          </Col>
-                          <Col md={9}>
-                          <div className='colordropdown'>
-                          <div className='select-color'>
-                            <span onClick={handleClick}>{cname}</span>
-                          </div>
-                       
-                        <ul>
-                          {
-                        Color  &&    Color.map((c)=>{
-                              const {color,category,type,code} = c;
-                              console.log(color);
-                              return(
-                               <div>
-                        {opencolor &&
-                                  <li className='list'>
-                                   <span className='w-25 h-25' style={{backgroundColor:color , width:"10px",color:color }}>.......</span> <span>{code.hex}</span>
-                                  </li>
-                        }
-                                  </div>
-                              )
-                            })
-                          }
-                      </ul>
-                        </div>
-                          </Col>
-                        </Row>
-                        
-                      </Box>
-
-                      {/* background  */}
-                      <Box className="my-1">
-                        <Row>
-                          <Col md={3}>
-                          <div><label>Background</label></div>
-                          </Col>
-                          <Col md={9}>
-                          <div className='colordropdown'>
-                          <div className='select-color'>
-                            <span onClick={handleClicks}>{cname}</span>
-                          </div>
-                       
-                        <ul>
-                          {
-                        Color  &&    Color.map((c)=>{
-                              const {color,category,type,code} = c;
-                              console.log(color);
-                              return(
-                               <div>
-                        {opencolors &&
-                                  <li className='list'>
-                                   <span className='w-25 h-25' style={{backgroundColor:color , width:"10px",color:color }}>.......</span> <span>{code.hex}</span>
-                                  </li>
-                        }
-                                  </div>
-                              )
-                            })
-                          }
-                      </ul>
-                        </div>
-                          </Col>
-                        </Row>
-                        
-                      </Box>
-                      
-                      <Box className="my-1">
-                        <Row>
-                          <Col md={3}>
-                          <div><label>Font Size</label></div>
-                          </Col>
-                          <Col md={9}>
-                          <div>
-                        <select className='form-control fs-16'>
-                         
-                          {
-                        font  &&    font.map((f)=>{
-                              const {name , face, fontFamily,fontWeight,fontStyle} = f;
-                              return(
-                               
-                                  <option key={name} style={{
-                                 fontFamily:{fontFamily},
-                                 fontWeight:{fontWeight},
-                                 fontStyle:{fontStyle}
-
-                          }}>{name}</option>
-                             
-                              )
-                            })
-                          }
-                        </select>
-                        </div>
-                          </Col>
-                        </Row>
-                      </Box>
-                      
-                      
-                      <Box>
-                    <label className='me-2'>Apply Text Effect </label>
-                    <input type="checkbox"/>
-                  </Box>
+                              <option  value="Anonymous Pro">
+                                Anonymous Pro
+                              </option>
+                              <option  value="Allerta Stencil">
+                                Allerta Stencil
+                              </option>
+                              <option  value="Allerta">Allerta</option>
+                              <option  value="Amaranth">Amaranth</option>
+                              <option  value="Anton">Anton</option>
+                              <option  value="Arimo">Arimo</option>
+                              <option  value="Bevan">Bevan</option>
+                              <option  value="Cabin">Cabin</option>
+                              <option  value="Droid Sans">Droid Sans</option>
+                            </Form.Select>
+                          </Box>
+                        </Box>
+                        {/* color  */}
+                        <Box
+                          className="mb-3 d-flex justify-content-between align-items-center"
+                          component="form"
+                          sx={{
+                            "& .MuiTextField-root": { m: 1, width: "25ch" },
+                          }}
+                          noValidate
+                          autoComplete="off"
+                        >
+                          <Box>
+                            <Typography className="fs-13">Color</Typography>
+                          </Box>
+                          <Box className="text_style_option">
+                            <Form.Select
+                              aria-label="Default select example"
+                              name="Color"
+                              Value={style.Color}
+                              onChange={handlechanged}
+                            >
+                              <option value="Select Color">Select Color</option>
+                              <option value="#fff">#fff</option>
+                              <option value="#DDDD">#DDDD</option>
+                              <option value="#000000">#000000</option>
+                              <option value="#f0f8ff">#f0f8ff</option>
+                              <option value="#faebd7">#faebd7</option>
+                              <option value="#00ffff">#00ffff</option>
+                              <option value="#f0f8ff">#f0f8ff</option>
+                            </Form.Select>
+                          </Box>
+                        </Box>
+                        {/* background  */}
+                        <Box
+                          className="mb-3 d-flex justify-content-between align-items-center"
+                          component="form"
+                          sx={{
+                            "& .MuiTextField-root": { m: 1, width: "25ch" },
+                          }}
+                          noValidate
+                          autoComplete="off"
+                        >
+                          <Box>
+                            <Typography className="fs-13">Background</Typography>
+                          </Box>
+                          <Box className="text_style_option">
+                            <Form.Select
+                              aria-label="Default select example"
+                              name="Background"
+                              onChange={handlechanged}
+                              Value={style.Background}
+                            >
+                              <option>Select Background</option>
+                              <option value="#fff">#fff</option>
+                              <option value="#000000">#000000</option>
+                              <option value="#f0f8ff">#f0f8ff</option>
+                              <option value="#faebd7">#faebd7</option>
+                              <option value="#00ffff">#00ffff</option>
+                              <option value="#f0f8ff">#f0f8ff</option>
+                            </Form.Select>
+                          </Box>
+                        </Box>
+                        {/* fontsize  */}
+                        <Box
+                          className="mb-3 d-flex justify-content-between align-items-center"
+                          component="form"
+                          sx={{
+                            "& .MuiTextField-root": { m: 1, width: "25ch" },
+                          }}
+                          noValidate
+                          autoComplete="off"
+                        >
+                          <Box>
+                            <Typography className="fs-13">Font size</Typography>
+                          </Box>
+                          <Box className="text_style_option">
+                            <Form.Select
+                              aria-label="Default select example"
+                              name="Fsize"
+                              Value={style.Fsize}
+                              onChange={handlechanged}
+                            >
+                              <option>Select Font Size</option>
+                              <option value="12">12</option>
+                              <option value="13">13</option>
+                              <option value="14">14</option>
+                              <option value="15">15</option>
+                              <option value="16">16</option>
+                              <option value="17">17</option>
+                              <option value="18">18</option>
+                            </Form.Select>
+                          </Box>
+                        </Box>
+                        {/* end  */}
+                        <Typography className="fs-13 effect">Apply Text Effect <input type="checkbox"/></Typography>
                       </Col>
-                  
-                  <Col  md={3} className="">
-                  <Box>
-                  <Typography>Text Position:</Typography>
-                  </Box>
-                  <Box className="head text-position my-1">
-                    {
 
-                    }
-                    <input type="checkbox" onClick={ setIsChecked=""} name="check" className='px-2 w-100'/>
-                    <input type="checkbox" name="check" className='px-2 w-100'/>
-                    <input type="checkbox" name="check" className='px-2 w-100'/>
-                  </Box>
-                  <Box className="head text-position my-1">
-                    <input type="checkbox" name="check" className='px-2 w-100'/>
-                    <input type="checkbox" name="check" className='px-2 w-100'/>
-                    <input type="checkbox" name="check" className='px-2 w-100'/>
-                  </Box>
-                  <Box className="head text-position my-1">
-                    <input type="checkbox" name="check" className='px-2 w-100'/>
-                    <input type="checkbox" name="check" className='px-2 w-100'/>
-                    <input type="checkbox" name="check" className='px-2 w-100'/>
-                  </Box>
-                  </Col>
-                  </Row>
-                  <Row>
-                    <Col md={12}>
-                    <div className='mb-3'>
-                      <button type="submit" className='btn-primary border-0 rounded px-3'>Save</button>
-                    </div>
-                    </Col>
-                  </Row>
+                      <Col md={4} className="">
+                        <Typography>Text Position</Typography>
+                        <Checkbox
+                        onChange={handlechanged}
+                        name="TextPosition"
+                          value="topleft "
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
+                        <Checkbox
+                        onChange={handlechanged}
+                        name="TextPosition"
+                          value="topcenter "
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
+                        <Checkbox
+                        onChange={handlechanged}
+                        name="TextPosition"
+                          value="topright "
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
+                        <Checkbox
+                        onChange={handlechanged}
+                        name="TextPosition"
+                          value="middleleft "
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
+                        <Checkbox
+                        onChange={handlechanged}
+                        name="TextPosition"
+                          value="middlecenter"
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
+                        <Checkbox
+                        name="TextPosition"
+                          value="middleright "
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12}>
+                        <button className="btn-primary border rounded">Save</button>
+                      </Col>
+                    </Row>
                   </Container>
                 </Box>
               </Box>
+              }
             </Box>
             <Box>
               <p>Optional: Add Station name overlaid on photo</p>
@@ -335,7 +251,7 @@ const[font,setfont]=useState(FONTSLIST)
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default OptionalPhoto
+export default OptionalPhoto;

@@ -43,6 +43,7 @@ body {
     background-color: #1688ca;
     color: #fff;
     padding: 6px 10px;
+    border-radius: 0.25rem 0.25rem 0 0;
   }
   .fs-18{
     font-size: 18px;
@@ -225,10 +226,12 @@ body {
   }
   
   .gray_bg{
-    background-color: #f3f3f3;
+    background-color: #6ccaf666;
   }
   .dark_gray_bg{
-    background-color: #DDDDDD;
+    background-color: #1688ca;
+    color: #fff;
+    border-radius: 0.25rem 0.25rem 0 0;
   }
   .station_action i {
     font-size: 15px;
@@ -278,6 +281,10 @@ body {
   .add_edit_station_section {
     background-color: #fff;
     box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+    /* position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%); */
   }
   /* stations session css end */
 

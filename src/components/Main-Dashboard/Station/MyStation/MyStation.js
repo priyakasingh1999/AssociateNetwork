@@ -10,15 +10,40 @@ import MyStationForm from "./MyStationForm";
 import RecentSessions from "../RecentSessions/RecentSessions";
 import MyStationData from "./MyStationData";
 import AddNewSession from "../RecentSessions/AddNewSession";
+import AddEditStation from "../RecentSessions/AddEditStations";
 
 const MyStation = () => {
   const [show, setIsShown] = useState(false);
   const [option, setOption] = useState(false);
   const [form, setForm] = useState(false);
-
+  const [width,setwidth]=useState(6)
+  const [currentstation, currentStation] = useState(false);
+  let datas=[
+    {
+    id:1,
+    title:"hih"
+  },
+  {
+    id:2,title:"ebfgiueg"
+  }
+]
+ const widthadjust =()=>{
+  if(width===6){
+  
+    setwidth(3)
+  }else{
+    setwidth(6)
+  }
+console.log(width)
+ }
   return (
     <Container className="my-3">
       {form && <MyStationForm setForm={setForm} form={form} />}
+      <Row>
+        <Col md={6}>
+        {currentstation && <AddEditStation currentStation={currentStation} currentstation={currentstation} /> }
+        </Col>
+      </Row>
       <Row>
         <Col xs={8}>
           <RecentSessions />
@@ -44,12 +69,9 @@ const MyStation = () => {
               <ul>
                 <li>
                   <a>
-                    <img src="./img/station-icon2.png" />
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <img src="./img/station-icon3.png" />
+                    <img src="./img/station-icon3.png"  onClick={()=>{
+                      currentStation(!currentstation)
+                    }}/>
                   </a>
                 </li>
               </ul>
@@ -113,7 +135,7 @@ const MyStation = () => {
               <ul>
                 <li>
                   <a>
-                    <img src="./img/substationicon1.png" />
+                    <img src="./img/substationicon1.png" onClick={widthadjust} />
                   </a>
                 </li>
                 <li>
@@ -124,38 +146,44 @@ const MyStation = () => {
               </ul>
             </div>
           </div>
-          <div className="pb-2 bg-white">
+          <div className="pb-2 bg-white stationss">
             {MyStationData.map((sData) => {
               const { img1, img2, id, text, title } = sData;
               return (
-                <Card key={id} className="card">
+                <div key={id}>
+                <Card className="card">
                   <Row
-                    className="p-2 py-1"
+                    className="px-3"
                     onMouseEnter={() => setIsShown(true)}
                     onMouseLeave={() => setIsShown(false)}
                   >
-                    <Col className="pe-1" sx={6}>
+                    <Col className="px-1 my-1" md={width}>
                       <Card.Img variant="top" src={img1} />
                     </Col>
-                    <Col className="ps-1" sx={6}>
-                      <Card.Img variant="top" src={img2} />
+                    <Col className="px-1 my-1" md={width}>
+                      <Card.Img variant="top" src={img1} />
                     </Col>
+                    <Col className="px-1 my-1" md={width}>
+                      <Card.Img variant="top" src={img1} />
+                    </Col>
+                    <Col className="px-1 my-1" md={width}>
+                      <Card.Img variant="top" src={img1} />
+                    </Col>
+                  
+                    
                   </Row>
-
-                  {/* {show  && <Card.Body >
-                      <Card.Title>{title}</Card.Title>
-                      <Card.Text>
-                        {text}
-                      </Card.Text>
-                      <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                } */}
                 </Card>
+                </div>
               );
             })}
           </div>
         </Col>
       </Row>
+      {
+        datas.map((s)=>{
+   return <div ></div>
+        })
+      }
     </Container>
   );
 };

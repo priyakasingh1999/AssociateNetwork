@@ -1,5 +1,7 @@
 import React from "react";
 import { Row ,Col, Container, Form, OverlayTrigger, Tooltip, Popover, Button} from 'react-bootstrap';
+import MyStationForm from "../MyStation/MyStationForm";
+import { useState } from "react";
 
 
 
@@ -16,12 +18,13 @@ const AddEditStation = ()=>{
       );
       
    
-      
+      const [form, setForm] = useState(false);
     
     return(
         <>
             <div className="add_edit_station_section">
                 <Container>
+                {form && <MyStationForm setForm={setForm} form={form} />}
                     <Row className="mb-2 dark_gray_bg">
                         <Col md={12}>
                             <div className="global_title_with_right_close_btn">
@@ -43,7 +46,9 @@ const AddEditStation = ()=>{
                     <Col md={4}>
                         <div className="d-flex align-items-center justify-content-center">
                             <p className="mb-0 fs-14 me-2">Create New Stations</p>
-                            <img src="img/plus.png" className="global_icon_size" alt="" />
+                            <img src="img/plus.png" className="global_icon_size" alt=""  onClick={() => {
+                            setForm(!form);
+                          }} />
                         </div>
                     </Col> 
                     </Row>
@@ -52,7 +57,9 @@ const AddEditStation = ()=>{
                         <Col md={3}>
                         <div className="d-flex align-items-center">
                             <p className="mb-0 fs-14 me-2">Favorites</p>
-                            <img src="img/plus_w.png" className="global_icon_size" alt="" />
+                            <img src="img/plus_w.png" className="global_icon_size" alt="" onClick={()=>{
+                                alert("Please check off Priority Box on Station")
+                            }} />
                         </div>
 
                          

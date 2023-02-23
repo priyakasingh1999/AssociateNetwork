@@ -6,12 +6,10 @@ import { Row, Col } from "react-bootstrap";
 import "./RecentSessions.css";
 import RecentSessionsData from "./RecentSessionsData";
 
-import AddNewSession from "./AddNewSession";
 
 function RecentSessions() {
   return (
     <>
-      {/* <AddNewSession /> */}
       <div className="session_box">
         <div className="recent_session_header d-flex align-items-center justify-content-between">
           <div className="left_session_icons d-flex align-items-center">
