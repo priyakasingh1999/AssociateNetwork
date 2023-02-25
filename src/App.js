@@ -8,7 +8,6 @@ import Station from './components/Station-admin/Station';
 import MyStationDashboard from './components/Main-Dashboard/Station/MyStationDashboard';
 import AddAssociates from './components/Main-Dashboard/Station/MyStation/FormPages/AddAssociates';
 // import TextStyle from './components/Main-Dashboard/Station/MyStation/FormPages/TextStyle'
-import AddEditStation from './components/Main-Dashboard/Station/RecentSessions/AddEditStations'
 import { Container,Row , Col } from 'react-bootstrap';
 
 
@@ -16,12 +15,9 @@ function App() {
   return (
  <div>
 
-
+    
     {/* <TextStyle/> */}
-   <Header/>
-
-
-   
+   <Header/>   
     <Router>
       <Routes>
         <Route path="/admin" element={<Admin/>}/>
@@ -31,13 +27,6 @@ function App() {
         
       </Routes>
     </Router>
-    <Container className='mt-4'>
-    <Row>
-      <Col md={8}>
-      <AddEditStation/>
-      </Col>
-    </Row>
-   </Container>
  </div>
   );
 }

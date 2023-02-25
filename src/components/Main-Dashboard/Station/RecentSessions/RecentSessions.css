@@ -281,10 +281,11 @@ body {
   .add_edit_station_section {
     background-color: #fff;
     box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
-    /* position: absolute;
+    position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50% , -50%); */
+    transform: translate(-50% , -50%);
+    z-index: 9999;
   }
   /* stations session css end */
 

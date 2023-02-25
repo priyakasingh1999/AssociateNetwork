@@ -22,7 +22,7 @@ function StationForm() {
     <OptionalLogo />,
     <AddWYSD />,
     <OptionalPhoto />,
-    <ChooseColor />
+    <ChooseColor />,
   ]);
   const [value, setValue] = useState(0);
 
@@ -56,36 +56,41 @@ function StationForm() {
             <Toast.Body>
               <Form>
                 {slider[value]}
-          { value>0 && value<=6  &&  <Button variant="primary" type="submit"  onClick={(e) => {
-                    e.preventDefault();
-                    setValue(() => value - 1);
-                  }}>
-                  Previous
-                </Button>
-}
-          { value<=6 &&
-                <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setValue(() => value + 1);
-                  }}
-                  variant="primary"
-                  type="submit"
-                  className="mx-2"
-                >
-                  Next
-                </Button>
-}
-                { value>2 && value<=6 && value!=4  &&  <Button variant="primary" type="submit" className="me-2">
-                  skip
-                </Button>
-}
-{ value>6   &&  <Button variant="primary" type="submit" className="me-2">
-                  Save
-                </Button>
-}
-
-
+                {value > 0 && value <= 6 && (
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setValue(() => value - 1);
+                    }}
+                  >
+                    Previous
+                  </Button>
+                )}
+                {value <= 6 && (
+                  <Button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setValue(() => value + 1);
+                    }}
+                    variant="primary"
+                    type="submit"
+                    className="mx-2"
+                  >
+                    Next
+                  </Button>
+                )}
+                {value > 2 && value <= 6 && value != 4 && (
+                  <Button variant="primary" type="submit" className="me-2">
+                    skip
+                  </Button>
+                )}
+                {value > 6 && (
+                  <Button variant="primary" type="submit" className="me-2">
+                    Save
+                  </Button>
+                )}
               </Form>
             </Toast.Body>
           </Toast>

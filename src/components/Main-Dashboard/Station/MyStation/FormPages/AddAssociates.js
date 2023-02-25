@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import { Form } from "react-bootstrap";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Avatar from "@mui/material/Avatar";
@@ -9,7 +9,11 @@ import Col from "react-bootstrap/Col";
 import { Box } from "@mui/system";
 import CloseIcon from '@mui/icons-material/Close';
 
+import {Stationform } from '../../../../Context/Stationform'
 const AddAssociates = () => {
+  const {formvalue , setformvalue} = useContext(Stationform );
+  const { Associate}=formvalue
+  console.log(formvalue);
   const [recentAssociateData, setrecent] = useState([
     {
       id: 1,
@@ -26,25 +30,25 @@ const AddAssociates = () => {
     {
       id: 3,
       img: "./img/sachin.png",
-      name: "Joy",
+      name: "Rinki",
       mail: "joy@gmail.com",
     },
     {
       id: 4,
       img: "./img/john.jpg",
-      name: "John",
+      name: "Sachin",
       mail: "abc@gmail.com",
     },
     {
       id: 5,
       img: "./img/puja1.png",
-      name: "Puja",
+      name: "Prashant",
       mail: "puja@gmail.com",
     },
     {
       id: 6,
       img: "./img/sachin.png",
-      name: "Joy",
+      name: "Priyanka",
       mail: "joy@gmail.com",
     },
   ]);
@@ -59,6 +63,7 @@ const AddAssociates = () => {
       return data.id === id;
     });
     setclickdata([ ...clickdata,...ckdata]);
+    setformvalue({...formvalue,Associate:clickdata})
     setsk(!sk);
   };
 
