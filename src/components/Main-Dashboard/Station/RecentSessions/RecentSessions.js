@@ -96,8 +96,8 @@ function RecentSessions() {
           const { userimg1, userName, userimg2, id, userContent, bottomTitle } =
             sessionData;
           return (
-            <div className="session_listing">
-              <Row key={id}>
+            <div className="session_listing" key={id}>
+              <Row >
                 <Col md={3}>
                   <div className="list_left_part d-flex align-items-center mb-3">
                     <div className="rs_user pe-2">
@@ -131,7 +131,7 @@ function RecentSessions() {
                   <ul className="session_action ps-0 mb-0">
                     <li>
                       <a href="">
-                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
                       </a>
                     </li>
                     <li>
@@ -217,7 +217,7 @@ function RecentSessions() {
 
                   <div className="rs_comment_area">
                     <div className="comment_now">
-                      <i class="fa fa-comments-o">
+                      <i className="fa fa-comments-o">
                         <span className="ps-2">2</span>
                       </i>
                     </div>
@@ -230,7 +230,7 @@ function RecentSessions() {
                       </a>
                     </div>
                     <div className="comment_now">
-                      <i class="fa fa-comments-o">
+                      <i className="fa fa-comments-o">
                         <span className="ps-2">2</span>
                       </i>
                     </div>

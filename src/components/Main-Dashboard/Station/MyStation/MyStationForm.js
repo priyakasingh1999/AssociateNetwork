@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -11,7 +11,12 @@ import OptionalLogo from "./FormPages/OptionalLogo";
 import AddWYSD from "./FormPages/AddWYSD";
 import OptionalPhoto from "./FormPages/OptionalPhoto";
 import ChooseColor from "./FormPages/ChooseColor";
+import {Stationform } from '../../../Context/Stationform'
+import axios from 'axios';
+
 function StationForm() {
+  const {formvalue , setformvalue} = useContext(Stationform);
+ 
   const [showA, setShowA] = useState(true);
 
   const toggleShowA = () => setShowA(!showA);
@@ -24,6 +29,26 @@ function StationForm() {
     <OptionalPhoto />,
     <ChooseColor />,
   ]);
+  const handlesubmit=(e)=>{
+    e.preventDefault()
+    alert("eu")
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+   if(formvalue){
+    window.localStorage.setItem("myObject", JSON.stringify(formvalue));
+  
+    axios.post('http://studiomyraa.com/assoc/api/station', formvalue,config)
+    .then(res=> {
+    alert("hahhaha")
+    })
+    .catch(error => {
+      console.log(error);
+    });
+   }
+  }
   const [value, setValue] = useState(0);
 
   const [htext, sethtext] = useState([
@@ -87,7 +112,7 @@ function StationForm() {
                   </Button>
                 )}
                 {value > 6 && (
-                  <Button variant="primary" type="submit" className="me-2">
+                  <Button variant="primary" type="submit" className="me-2" onClick={handlesubmit}>
                     Save
                   </Button>
                 )}

@@ -405,3 +405,62 @@ object-fit: cover;
 .MuiTooltip-popper[data-popper-placement*="bottom"] .css-ja5taz-MuiTooltip-tooltip {
     margin-top: 10px !important;
 }
+/* staionFiles css  */
+.staionFiles{
+    background-color: #fff;
+}
+.staionFiles ul li{
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.myfiles_stationname{
+    font-size: 16px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: #337ab7;
+}
+.stationFilesBox{
+    height: 590px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.nav-link{
+    padding: 0;
+    font-size: 12px;
+    color: black;
+}
+.nav-tabs li:nth-child(4){
+    margin: 0;
+}
+.staionFiles ul li:nth-child(3){
+    display: inline-block;
+    margin-right: 20px;
+}
+.nav-tabs li:nth-child(4) input{
+    border-radius: 7px;
+    line-height: 23px;
+    padding-left: 7px;
+    border: 1px solid #ccc;
+}
+.nav-tabs li:nth-child(4) input:focus{
+    outline: none;
+    box-shadow: 0px 0px 5px #0664a743 , -0px -0px 5px #0664a743 ;
+}
+.nav-tabs .nav-link.active {
+    color: #0663a7;
+    border: none !important;
+    font-weight:500;
+}
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover ,.nav-tabs {
+    border: none;
+}
+.optionalLogo{
+    display: flex ;
+    justify-content: left;
+    gap: 10px;
+}
+.optionalLogo .form-control {
+    display: block;
+    width:unset;
+}

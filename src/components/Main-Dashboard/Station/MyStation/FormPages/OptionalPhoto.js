@@ -23,7 +23,11 @@ const OptionalPhoto = () => {
     Fsize: "",
     TextPosition:""
   });
-
+const stylesave=(e)=>{
+  e.preventDefault();
+  console.log("this is checking",style);
+  alert("ebhfiu")
+}
   const [styleopen , SetStyleOpen] = useState(false);
 
 
@@ -236,7 +240,7 @@ const OptionalPhoto = () => {
                     </Row>
                     <Row>
                       <Col md={12}>
-                        <button className="btn-primary border rounded">Save</button>
+                        <button className="btn-primary border rounded" onClick={stylesave}>Save</button>
                       </Col>
                     </Row>
                   </Container>

@@ -4,10 +4,10 @@ import {React,createContext, useState }from 'react'
 
  const StationProvider=({children})=>{
     const[formvalue,setformvalue]=useState({
-        StationName:"gjig",
+        StationName:"",
         Associate:[],
         Privacy:"",
-        Image:"",
+        Image:null,
         Statement:""
     })
  

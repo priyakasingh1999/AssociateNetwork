@@ -14,6 +14,7 @@ import AddEditStation from "../RecentSessions/AddEditStations";
 import Huddle  from './Huddle';
 import MyStationp from './Mystationp'
 import Tooltip from '@mui/material/Tooltip';
+import StationFiles from "./StationFiles";
 const MyStation = () => {
   const [show, setIsShown] = useState(false);
   const [option, setOption] = useState(false);
@@ -21,15 +22,12 @@ const MyStation = () => {
   const [width,setwidth]=useState(6)
   const [currentstation, currentStation] = useState(false);
   const [value, setValue] = useState(0);
-  const [changestation , setchangestation]=useState(true)
+  const [changestation , setchangestation]=useState(false);
+
+  const [stationFile, setStationFile] = useState(false);  
  
-  const [htext, sethtext] = useState([
-    "My Station",
-    "Huddle",
-    "My Station",
-    "Huddle"
-  ]);
   let datas=[
+
     {
     id:1,
     title:"hih"
@@ -56,23 +54,26 @@ console.log(width)
         </Col>
       </Row>
       <Row>
-        <Col md={8} className="pe-0">
+        <Col md={8} >
           <RecentSessions />
         </Col>
-        <Col md={4}>
+        <Col md={4} className="ps-0">
       
           <div>
             <div className="Station-head">
               <div>
                 <ul>
                   <li>
-                  <Tooltip title="Station File">
+                     <Tooltip title="Station File">
                     <a>
-                    
-                      <img src="./img/upload-white.png" />
-                    
+                      <img src="./img/upload-white.png" onClick={()=>{
+                        setchangestation(!changestation)
+                        setStationFile(false)
+                       }
+                        
+                        } />
                     </a>
-                    </Tooltip>
+                  </Tooltip>
                   </li>
                   <li>
                   <Tooltip title="Station Board">
@@ -83,7 +84,7 @@ console.log(width)
                   </li>
                 </ul>
               </div>
-              <div>{htext[value]}</div>
+              <div>{changestation?<p>Huddle</p>:<p>My Station</p>}</div>
               <div>
                 <ul>
                   <li>
@@ -97,146 +98,51 @@ console.log(width)
                     </Tooltip>
                   </li>
                   <li>
-                  <Tooltip title="Back to Huddle">
+                 
                     <a>
-                      {
-                        value < 3 &&
-                        (
-                          <img src="./img/station-icon2.png" onClick={()=>{
-                           setchangestation(!changestation)
-                          }}/>
-                        )
-                      }
+                    {
+                  stationFile?<Tooltip title="Back to Huddle"><img src="./img/station-icon2.png" onClick={()=>{
+                    setchangestation(false)
+                    setStationFile(!stationFile)
+                   }}/></Tooltip>:  <Tooltip title="Back to Station"><img src="./img/huddleicon.png" onClick={()=>{
+                    setchangestation(false)
+                    setStationFile(!stationFile)
+                   }}/></Tooltip>
+                }
+
                     </a>
-                    </Tooltip>
                   </li>
                 </ul>
               </div>
             </div>
-            {/* <div className="Station-head sub-head py-2 fs-13">
-              <div className="d-flex gap-2 ps-2">
-                <p
-                  onClick={() => {
-                    alert("Please check off Priority Box on Station");
-                  }}
-                >
-                  <span>Priority</span> <span>+</span>
-                </p>
-                <p className="dropdown">
-                  <span
-                    onClick={() => {
-                      setOption(!option);
-                    }}
-                  >
-                    Options
-                  </span>{" "}
-                  <span>+</span>
-                  {option && (
-                    <div className="dropdown-body text-center">
-                      <p className="fw-bold">Messaging options</p>
-                      <div className="my-2 d-flex gap-4 justify-content-between">
-                        <lable>Show only Session Messaging</lable>
-                        <input type="checkbox" />
-                      </div>
-                      <div className="my-2 d-flex gap-4 justify-content-between">
-                        <div>
-                          <p>Add a Station</p>
-                        </div>
-                        <div>
-                          <p
-                            onClick={() => {
-                              setForm(!form);
-                            }}
-                          >
-                            +
-                          </p>
-                        </div>
-                      </div>
-                      <div className="my-2 d-flex gap-4 justify-content-between">
-                        <div>
-                          <p>Add Direct Session Message</p>
-                        </div>
-                        <div>
-                          <p>
-                            <AddNewSession />
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </p>
-              </div>
-
+            
               <div>
-                <ul>
-                  <li>
-                    <a>
-                      <img src="./img/substationicon1.png" onClick={widthadjust} />
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                    <img src="./img/substationicon2.png"/>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div> */}
+              
+              {
+                !changestation && !stationFile
+ && <Huddle />
+              }
 
+          {
+            changestation &&<StationFiles/>
+                
+            }
+            {
+          stationFile &&<MyStationp/>
+            }
+           
+
+               
              
-            {/* <div className="pb-2 bg-white stationss">
-              {MyStationData.map((sData) => {
-                const { img1, img2, id, text, title } = sData;
-                return (
-                  <div key={id}>
-                  <Card className="card">
-                    <Row
-                      className="px-3"
-                      onMouseEnter={() => setIsShown(true)}
-                      onMouseLeave={() => setIsShown(false)}
-                    >
-                      <Col className="px-1 my-1" md={width}>
-                        <Card.Img variant="top" src={img1} />
-                      </Col>
-                      <Col className="px-1 my-1" md={width}>
-                        <Card.Img variant="top" src={img1} />
-                      </Col>
-                      <Col className="px-1 my-1" md={width}>
-                        <Card.Img variant="top" src={img1} />
-                      </Col>
-                      <Col className="px-1 my-1" md={width}>
-                        <Card.Img variant="top" src={img1} />
-                      </Col>
-                    
-                      
-                    </Row>
-                  </Card>
-                  </div>
-                );
-              })}
-            </div> */}
-
-
-
-
-              <div>
-
-                {
-                  changestation?<MyStationp/>:<Huddle/>
-                }
-                 
+   
               
               </div>
+              
 
             
           </div>
         </Col>
       </Row>
-      {
-        datas.map((s)=>{
-   return <div ></div>
-        })
-      }
     </Container>
   );
 };
