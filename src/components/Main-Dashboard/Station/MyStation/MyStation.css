@@ -332,8 +332,9 @@ padding: 5px 8px;
     padding-top: 2px;
 }
 .stationss{
-    height: 500px;
-    overflow-y: scroll;
+    flex-wrap: wrap !important;
+   
+    /* overflow-y: scroll; */
     overflow-x: hidden;
 }
 
@@ -464,3 +465,25 @@ object-fit: cover;
     display: block;
     width:unset;
 }
+.huddle_add_head{
+    display: flex;
+    justify-content: space-between;
+    background-color: #0663a7;
+    color: #fff;
+    padding:5px 10px;
+}
+.station-img{
+    border: 5px solid transparent;
+    border-radius: 0.75rem;
+}
+.station-img:hover{
+    border: 5px solid #1688ca;
+    border-radius: 0.75rem;
+}
+.station-img img{
+    border-radius: 0.4rem ;
+}
+.cr{
+    cursor: pointer !important;
+}
+

@@ -2,15 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import StationProvider from './components/Context/Stationform';
+import  SessionProvider from './components/Context/Session';
 import reportWebVitals from './reportWebVitals';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <div>
+   
     <StationProvider>
+    <SessionProvider>
     <App />
+    </SessionProvider>
     </StationProvider>
+  
 </div>
 );
 

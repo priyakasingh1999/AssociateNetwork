@@ -22,7 +22,7 @@ const OptionalLogo = () => {
     <div >    
       <Form.Group controlId="formFileSm" className="mb-3 optionalLogo">
         <Form.Label className='text-dark my-auto'>Add station logo image</Form.Label>
-        <Form.Control type="file" size="sm"  onChange={handlefile}/>
+        <Form.Control type="file" size="sm" name="avatar"onChange={handlefile}/>
       </Form.Group>
     </div>
   )

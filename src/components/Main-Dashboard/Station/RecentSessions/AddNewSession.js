@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Row, Col } from "react-bootstrap";
@@ -7,6 +7,8 @@ import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Table from "react-bootstrap/Table";
+import { Sessionform } from "../../../Context/Session";
+
 
 //this is add new session rich tex editor code start
 const AddNewSessionEditor = () => {
@@ -28,6 +30,10 @@ const AddNewSessionEditor = () => {
 //this is add new session rich tex editor code end
 
 function AddNewSessionModal(props) {
+  const {sessionform,setsessionform} = useContext( Sessionform);
+  const{ modalShow,id}=sessionform
+ 
+  console.log(sessionform);
   const [selectbox, setselectbox] = useState(false);
   const [file, setfile] = useState(false);
   const [systemfile, setsytemfile] = useState(false);
@@ -39,9 +45,10 @@ function AddNewSessionModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header  >
         <Modal.Title id="contained-modal-title-vcenter">
           <p className="mb-0 fs-18">Add New Session</p>
+          <p onClick={()=>setsessionform({...sessionStorage,modalShow:false})}>close</p>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -171,7 +178,7 @@ function AddNewSessionModal(props) {
                 <img src="img/plus.png" className="global_icon_size" alt="" />
               </div>
               <p className="mb-0 fs-20 light_purple_title fw-bold">
-                Select Station or add Direct Session
+               {id ?<p>{id.stationname}</p>: <p>Select Station or add Direct Session</p>}
               </p>
             </Col>
           </Row>
@@ -344,13 +351,16 @@ function AddNewSessionModal(props) {
 
 //add new session modal function code start
 function DisplayAddNewSessionModal() {
-  const [modalShow, setModalShow] = React.useState(false);
+  const {sessionform,setsessionform} = useContext( Sessionform);
+const{ modalShow}=sessionform
+console.log(sessionform);
+  //const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <>
-      <p onClick={() => setModalShow(true)}>+</p>
+      <p onClick={() =>setsessionform({...sessionform,modalShow:true})}>+</p>
 
-      <AddNewSessionModal show={modalShow} onHide={() => setModalShow(false)} />
+     <AddNewSessionModal show={modalShow} />
     </>
   );
 }

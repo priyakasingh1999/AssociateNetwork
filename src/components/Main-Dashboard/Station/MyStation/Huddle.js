@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { Col, Container,Row } from 'react-bootstrap'
 import HandleData from './HanddleData';
 import Tooltip from '@mui/material/Tooltip';
+import AddHuddle from './AddHuddle';
+import { Box } from '@mui/system';
 
 const Huddle = () => {
-    const [currentstation, currentStation] = useState(false);
+    const [currentstation, setCurrentStation] = useState(false);
   return (
     <Container>
         <Row>
@@ -38,11 +40,12 @@ const Huddle = () => {
               </ul>
             </div>
             </div> */}
-            <div className='bg-white huddle-box p-2'>
-            <Row className='mb-2 handdle-head'>
+            <div className='py-2 handdle-head bg-white d-flex'>
                             <Col md={3}>
                                 <div className='d-flex gap-1 align-items-center'>
-                                    <div><p className='fs-12 blue fw-bold'>Add</p></div>
+                                    <div><p className='fs-12 blue fw-bold cr'  onClick={()=>{
+                setCurrentStation(!currentstation)
+              }}>Add</p></div>
                                     <div className='hundle-icon lh-0'>
                                     <Tooltip title="Post">
                                       <img src='./img/huddle1.png'/>
@@ -52,7 +55,9 @@ const Huddle = () => {
                             </Col>
                             <Col md={3}>
                             <div className='d-flex gap-1 align-items-center justify-content-center'>
-                                    <div><p className='fs-12 blue fw-bold'>Add</p></div>
+                                    <div><p className='fs-12 blue fw-bold cr' onClick={()=>{
+                setCurrentStation(!currentstation)
+              }}>Add</p></div>
                                     <div className='hundle-icon lh-0'>
                                     <Tooltip title="Easel">
                                       <img src='./img/huddle2.png'/>
@@ -62,7 +67,9 @@ const Huddle = () => {
                             </Col>
                             <Col md={3}>
                             <div className='d-flex gap-1 align-items-center justify-content-center'>
-                                    <div><p className='fs-12 blue fw-bold'>Add</p></div>
+                                    <div><p className='fs-12 blue fw-bold cr' onClick={()=>{
+                setCurrentStation(!currentstation)
+              }}>Add</p></div>
                                     <div className='lh-0'>
                                        <Tooltip title="Poll">
                                       <img src='./img/huddle3.png'/>
@@ -75,7 +82,18 @@ const Huddle = () => {
                                     <div className='lh-0'><img src='./img/huddle4.png'/></div>
                                 </div>
                             </Col>
-                        </Row>
+                        </div>
+            {currentstation &&
+              <Col md={12} className="p-0 bg-white mb-1">
+              <Box className="huddle_add">
+              <AddHuddle setCurrentStation={setCurrentStation}/>
+              </Box>
+            </Col>
+            }
+            <div className='bg-white huddle-box'>
+            
+
+            
             
             {
                 HandleData.map((handledata)=>{

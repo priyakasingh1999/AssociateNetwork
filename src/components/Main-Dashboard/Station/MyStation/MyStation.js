@@ -69,22 +69,21 @@ console.log(width)
                       <img src="./img/upload-white.png" onClick={()=>{
                         setchangestation(!changestation)
                         setStationFile(false)
-                       }
-                        
-                        } />
+                       }}
+                        />
                     </a>
                   </Tooltip>
                   </li>
-                  <li>
+                  {/* <li>
                   <Tooltip title="Station Board">
                     <a>
                       <img src="./img/mystation2-white.png" />
                     </a>
                   </Tooltip>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
-              <div>{changestation?<p>Huddle</p>:<p>My Station</p>}</div>
+              <div>{stationFile?<p>My Station</p>:<p>Huddle</p> && changestation?<p>Station Files</p>:<p>Huddle</p>}</div>
               <div>
                 <ul>
                   <li>
@@ -124,11 +123,11 @@ console.log(width)
               }
 
           {
-            changestation &&<StationFiles/>
+            changestation &&<StationFiles  />
                 
             }
             {
-          stationFile &&<MyStationp/>
+          stationFile &&<MyStationp stationFile={stationFile}/>
             }
            
 

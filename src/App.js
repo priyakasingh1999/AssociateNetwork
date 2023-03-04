@@ -10,11 +10,9 @@ import AddAssociates from './components/Main-Dashboard/Station/MyStation/FormPag
 // import TextStyle from './components/Main-Dashboard/Station/MyStation/FormPages/TextStyle'
 import { Container,Row , Col } from 'react-bootstrap';
 
-
 function App() {
   return (
  <div>
-
     
     {/* <TextStyle/> */}
    <Header/>   
