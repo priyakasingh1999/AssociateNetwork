@@ -8,49 +8,113 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Table from "react-bootstrap/Table";
 import { Sessionform } from "../../../Context/Session";
+import CancelIcon from '@mui/icons-material/Cancel';
+import {Box} from '@mui/material'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 
 
 //this is add new session rich tex editor code start
 const AddNewSessionEditor = () => {
-  const editor = useRef(null);
-  const [content, setContent] = useState("");
+ 
+
 
   return (
     <>
-      <JoditEditor
-        ref={editor}
-        value={content}
-        tabIndex={1} // tabIndex of textarea
-        onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-        onChange={(newContent) => {}}
-      />
+     
     </>
   );
 };
 //this is add new session rich tex editor code end
 
+
+
 function AddNewSessionModal(props) {
+  // const [content, setContent] = useState('');
+
+  function handleContentChange(value) {
+    setContent(value);
+  }
+  const editor = useRef(null);
+  const [content, setContent] = useState("");
   const {sessionform,setsessionform} = useContext( Sessionform);
   const{ modalShow,id}=sessionform
- 
+  
+                
   console.log(sessionform);
   const [selectbox, setselectbox] = useState(false);
   const [file, setfile] = useState(false);
   const [systemfile, setsytemfile] = useState(false);
   const [inputtype, setinputtype] = useState([]);
+
+  const[addsession,setaddsession]=useState({
+    textbox:'',
+    filedata:null,
+   
+  })
+  console.log(addsession);
+  
+  const Handlesubmit=(e)=>{
+    e.preventDefault()
+    
+ if(addsession){
+  const{textbox,filedata}=addsession
+  
+  var formdata = new FormData();
+  formdata.append("textbox", textbox);
+  formdata.append("file", filedata);
+  if(id){
+    const{associates,stationname
+    }=id
+    formdata.append("station", stationname);
+    associates.map((res,index)=>{
+      formdata.append(`name[${index}]`, res.name)
+      formdata.append(`mail[${index}]`, res.mail)
+    })
+  }
+  
+  var requestOptions = {
+    method: 'POST',
+    body: formdata,
+    redirect: 'follow'
+  };
+  
+  fetch("https://studiomyraa.com/assoc/api/add_session", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+ 
+ }
+
+  }
+  const{textbox,filedata}=addsession
+ 
   return (
+    <div>
+    
     <Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header  >
-        <Modal.Title id="contained-modal-title-vcenter">
-          <p className="mb-0 fs-18">Add New Session</p>
-          <p onClick={()=>setsessionform({...sessionStorage,modalShow:false})}>close</p>
-        </Modal.Title>
-      </Modal.Header>
+       
+      <div className="p-2">
+      <Box className="d-flex justify-content-between pb-2">
+        <div></div>
+          <div><p className="mb-0 fs-18">Add New Session</p></div>
+          <div><p onClick={()=>setsessionform({...sessionStorage,modalShow:false})}><CancelIcon/></p></div>
+        </Box>
+        <Box>
+        <ReactQuill
+      value={content}
+      onChange={handleContentChange}
+      modules={{ toolbar: true }}
+    />
+        </Box>
+      <textarea className="w-100" id="w3review" name="w3review" rows="4" cols="50" value={addsession.textbox} onChange={(e)=>setaddsession({...addsession,textbox:e.target.value})}> obdfr</textarea>
       <Modal.Body>
         <div className="ans_modal">
           <div className="mb-3">{<AddNewSessionEditor />}</div>
@@ -185,7 +249,7 @@ function AddNewSessionModal(props) {
         </div>
 
         <div className="search_session_associate">
-          <Row className="align-items-center">
+          <Row className="align-items-center mb-3">
             <Col md={3}>
               <Form.Label>
                 Search By Name:{" "}
@@ -212,7 +276,7 @@ function AddNewSessionModal(props) {
                     ]);
                   }}
                 >
-                  hhwdswhdi
+              
                 </h1>
               </Form.Label>
             </Col>
@@ -257,7 +321,7 @@ function AddNewSessionModal(props) {
           <Col md={6}>
             <div className="add_more_files">
               <div className="d-flex align-items-center">
-                <Form.Control type="file" className="me-2" />
+                <Form.Control type="file" className="me-2" onChange={(e)=>setaddsession({...addsession,filedata:e.target.files[0]})}/>
                 <Form.Control
                   type="text"
                   placeholder="Name of your file"
@@ -344,8 +408,15 @@ function AddNewSessionModal(props) {
             )}
           </Col>
         </Row>
+        <Row className="mt-4">
+          <Col md={12} className="text-center">
+          <button onClick={Handlesubmit} className="btn btn-primary">submit</button>
+          </Col>
+        </Row>
       </Modal.Body>
+      </div>
     </Modal>
+    </div>
   );
 }
 

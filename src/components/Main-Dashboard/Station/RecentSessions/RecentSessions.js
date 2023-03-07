@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Row, Col } from "react-bootstrap";
 // import DisplayAddNewSessionModal from './AddNewSession';
 import "./RecentSessions.css";
 import RecentSessionsData from "./RecentSessionsData";
+import axios from "axios";
 
 
 function RecentSessions() {
+  const[RecentSessionsData,setRecentSessionsData]=useState([])
+  useEffect(()=>{
+axios.get('https://studiomyraa.com/assoc/api/get_session').then((data)=>{
+  setRecentSessionsData(data.data.results)
+ 
+})
+  },[])
   return (
     <>
       <div className="session_box">
@@ -92,9 +100,16 @@ function RecentSessions() {
           </div>
         </div>
 
+        <div class="session_Box">
+
         {RecentSessionsData.map((sessionData) => {
-          const { userimg1, userName, userimg2, id, userContent, bottomTitle } =
-            sessionData;
+            const {id,textbox,file,station,created_at,session_associate
+            }=sessionData
+           const{name}= session_associate[0]
+           console.log(sessionData); 
+            const ps = created_at.split(0 , 10)
+         let date=`${ps[2]}/${ps[1]} ${ps[4]}`
+   
           return (
             <div className="session_listing" key={id}>
               <Row >
@@ -106,7 +121,7 @@ function RecentSessions() {
                           delay={{ show: 250, hide: 300 }}
                           overlay={(props) => (
                             <Tooltip {...props} className="custom_tool_tip">
-                              <p className="mb-0">{userName}</p>
+                              <p className="mb-0">{name}</p>
                               <a href="tel: 555-555-5555"> 555-555-5555</a>
                               <p className="mb-0"> Facility Manager</p>
                             </Tooltip>
@@ -114,7 +129,7 @@ function RecentSessions() {
                           placement="right"
                         >
                           <img
-                            src={userimg1}
+                            src={name==='Puja'?`./img/puja1.png`:`./img/john.jpg`}
                             className="global_icon_size cursor-pointer rs_user_profile"
                             alt=""
                           />
@@ -123,8 +138,8 @@ function RecentSessions() {
                     </div>
 
                     <div>
-                      <p className="fs-14 mb-0">{userName}</p>
-                      <p className="fs-13 mb-0">02/13 1:19 AM</p>
+                      <p className="fs-14 mb-0">{name}</p>
+                      <p className="fs-13 mb-0">{date}</p>
                     </div>
                   </div>
 
@@ -203,7 +218,7 @@ function RecentSessions() {
                   >
                     <a href="">
                       <img
-                        src={userimg2}
+                        src={`https://assoc.studiomyraa.com/public/uploads/images/${file}`}
                         className="img-fluid cursor-pointer"
                         alt=""
                       />
@@ -212,7 +227,7 @@ function RecentSessions() {
                 </Col>
                 <Col md={8}>
                   <div className="mb-4">
-                    <p className="fs-14 mb-0">{userContent} </p>
+                    <p className="fs-14 mb-0">{textbox} </p>
                   </div>
 
                   <div className="rs_comment_area">
@@ -226,7 +241,7 @@ function RecentSessions() {
                         href=""
                         className="text-decoration-none fs-14 discussions_link"
                       >
-                        {bottomTitle}
+                        {station}
                       </a>
                     </div>
                     <div className="comment_now">
@@ -240,6 +255,7 @@ function RecentSessions() {
             </div>
           );
         })}
+        </div>
 
         {/* <div className='session_listing'>
                 <Row>

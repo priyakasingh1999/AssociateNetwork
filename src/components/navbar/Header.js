@@ -2,7 +2,7 @@ import "./Header.css"
 function NavigationNav() {
   return (
     <header>
-  <nav className="navbar navbar-expand-lg navbar-light bg-white py-2">
+  <nav className="navbar navbar-expand-lg navbar-light bg-white">
     <div className="container">
       <li className="navbar-brand nav-item dropdown my-auto d-flex gap-2">
         <div className="d-flex gap-2">
@@ -14,7 +14,7 @@ function NavigationNav() {
           </div>
         </div>
         <a
-          className=""
+          className="h_dropdown"
           href="#"
           id="navbarDropdown"
           role="button"
@@ -112,16 +112,27 @@ function NavigationNav() {
       </button>
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+        
           <li className="nav-item line my-auto">
             <a
               className="nav-link active "
               aria-current="page"
               href="#"
             >
-              <p className="rounded-pill m-0">Sign up for Free Trial Now</p>
+              <p className="rounded-pill m-0">Sign up  for <br/> Free Trial Now</p>
             </a>
           </li>
-          {/* <li className="nav-item line ms-0 my-auto dropdown">
+          <li className="nav-item my-auto line">
+            <a className="nav-link ps-0 pe-0" aria-current="page" href="#" >
+              <img src="img/header-station.png" className="img-fluid p-2" />
+            </a>
+          </li>
+          <li className="nav-item my-auto line">
+            <a className="nav-link ps-0" aria-current="page" href="#">
+              <img src="img/header-edit-station.png" className="img-fluid p-2" />
+            </a>
+          </li>
+          {/* <li className="nav-item my-auto line ms-0 my-auto dropdown">
             <a
               className="nav-link dropdown-toggle"
               aria-current="page"
@@ -163,7 +174,7 @@ function NavigationNav() {
                       <td>
                         <input type="radio" name="Quick" />
                       </td>
-                    </tr>
+                  </tr>
                     <tr className="odd">
                       <td>3</td>
                       <td>Hide Notification</td>
@@ -312,12 +323,12 @@ function NavigationNav() {
               </form>
             </div>
           </li> */}
-          <li className="nav-item line">
+          <li className="nav-item my-auto line">
             <a className="nav-link" aria-current="page" href="#">
               <img src="img/company_logo.png" className="img-fluid" />
             </a>
           </li>
-          <li className="nav-item line dropdown">
+          <li className="nav-item my-auto line dropdown">
             <a
               className="nav-link dropdown-toggle"
               aria-current="page"
@@ -359,13 +370,13 @@ function NavigationNav() {
               </li>
             </ul>
           </li>
-          <li className="nav-item line px-2">
+          <li className="nav-item my-auto line px-2">
             <a className="nav-link home" aria-current="page" href="#">
               <i className="fa fa-home" />
             </a>
           </li>
           <li className="nav-item my-auto">
-            <a className="nav-link" aria-current="page" href="#">
+            <a className="nav-link lh-0" aria-current="page" href="#">
               <i className="fa fa-question-circle" />
             </a>
           </li>

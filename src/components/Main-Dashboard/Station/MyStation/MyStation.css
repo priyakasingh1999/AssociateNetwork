@@ -339,7 +339,7 @@ padding: 5px 8px;
 }
 
 /* huddle css  */
-.huddle-box{
+.huddle-box,.stationss{
     height: 707px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -468,8 +468,10 @@ object-fit: cover;
 .huddle_add_head{
     display: flex;
     justify-content: space-between;
-    background-color: #0663a7;
-    color: #fff;
+    /* background-color: #0663a7; */
+    background-color: rgb(221, 215, 255);
+    /* color: #fff; */
+    color: black;
     padding:5px 10px;
 }
 .station-img{
@@ -478,6 +480,7 @@ object-fit: cover;
 }
 .station-img:hover{
     border: 5px solid #1688ca;
+    
     border-radius: 0.75rem;
 }
 .station-img img{
@@ -486,4 +489,47 @@ object-fit: cover;
 .cr{
     cursor: pointer !important;
 }
+.ql-editor.ql-blank{
+    display: none;
+}
 
+/* huddle video css start  */
+.video-huddle{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    border: 1px solid black;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 0.25rem;
+}
+.video-huddle video{
+    border: 4px solid black;
+    border-radius: 0.25rem;
+}
+.video-screen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.zoom-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+}
+.videos-icon{
+    text-align: center;
+    /* border: 1px solid red; */
+}
+.videos-icon ul li{
+    display: inline-block;
+    margin: 0 5px;
+}
+.video-huddle .css-i4bv87-MuiSvgIcon-root{
+    width: 1.5em;
+    height: 1.5em;
+}

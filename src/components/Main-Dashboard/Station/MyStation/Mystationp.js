@@ -1,4 +1,4 @@
-import React, { useEffect ,useContext} from "react";
+import React, { useEffect, useContext } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -11,33 +11,28 @@ import axios from "axios";
 import { Box, Typography } from "@mui/material";
 import { Sessionform } from "../../../Context/Session";
 
-const MyStationp = ({stationFile}) => {
- const[MyStationData,setMyStationData]=useState([])
- const {sessionform,setsessionform} = useContext( Sessionform);
- const{ modalShow,id}=sessionform
- console.log(sessionform);
+const MyStationp = ({ stationFile }) => {
+  const [MyStationData, setMyStationData] = useState([]);
+  const { sessionform, setsessionform } = useContext(Sessionform);
+  const { modalShow, id } = sessionform;
+  console.log(sessionform);
 
   const [show, setIsShown] = useState(false);
   const [option, setOption] = useState(false);
   const [form, setForm] = useState(false);
   const [width, setwidth] = useState(6);
   const [datas, setdatas] = useState([]);
-  const stationdata=async()=>{
-     let response = await axios.get('https://assoc.studiomyraa.com/api/get_station')
-   console.log(response.data,"allstations");
-   
-     setMyStationData(response.data.results);
-  }
-  useEffect(()=>{
-    stationdata()
-  },[stationFile])
+  const stationdata = async () => {
+    let response = await axios.get(
+      "https://assoc.studiomyraa.com/api/get_station"
+    );
+    console.log(response.data, "allstations");
 
- 
-
-    
-    
-  
-
+    setMyStationData(response.data.results);
+  };
+  useEffect(() => {
+    stationdata();
+  }, [stationFile]);
 
   const widthadjust = () => {
     if (width === 6) {
@@ -49,7 +44,6 @@ const MyStationp = ({stationFile}) => {
   };
   return (
     <div>
-     
       {form && <MyStationForm setForm={setForm} form={form} />}
       <div className="Station-head sub-head py-2 fs-13">
         <div className="d-flex gap-2 ps-2">
@@ -61,15 +55,15 @@ const MyStationp = ({stationFile}) => {
             <span>Priority</span> <span>+</span>
           </p>
           <div className="dropdown">
-          <p>
-            <span
-              onClick={() => {
-                setOption(!option);
-              }}
-            >
-              Options
-            </span>{" "}
-            <span>+</span>
+            <p>
+              <span
+                onClick={() => {
+                  setOption(!option);
+                }}
+              >
+                Options
+              </span>{" "}
+              <span>+</span>
             </p>
             {option && (
               <div className="dropdown-body text-center">
@@ -111,45 +105,46 @@ const MyStationp = ({stationFile}) => {
           <ul>
             <li>
               <Tooltip title="Reduced Size">
-              
-                  <img src="./img/substationicon1.png" onClick={widthadjust} />
-              
+                <img src="./img/substationicon1.png" onClick={widthadjust} />
               </Tooltip>
             </li>
             <li>
-             
-                <img src="./img/substationicon2.png" />
-             
+              <img src="./img/substationicon2.png" />
             </li>
           </ul>
         </div>
       </div>
-     
-      <div className="pb-2 bg-white stationss " style={{display:'flex'}} >
-        {   MyStationData && MyStationData.map((sData) => {
-          console.log(sData);
-          const { _id,stationname,  image,id
 
-          } = sData;
-          return (
-            <Col key={_id}  md={width} className="" >
-            
+      <div className="pb-2 bg-white stationss " style={{ display: "flex" }}>
+        {MyStationData &&
+          MyStationData.map((sData) => {
+            console.log(sData);
+            const { _id, stationname, image, id } = sData;
+            return (
+              <Col key={_id} md={width} className="">
                 <div
                   className="w-100 h-100"
                   onMouseEnter={() => setIsShown(true)}
                   onMouseLeave={() => setIsShown(false)}
                 >
                   <div className="my-1 w-100 h-100 station-img">
-                 <Card.Img variant="top" src={`https://assoc.studiomyraa.com/public/uploads/images/${image}` }   onClick={()=>setsessionform({...sessionStorage,modalShow:true,id:sData})}/>
+                    <Card.Img
+                      variant="top"
+                      src={`https://assoc.studiomyraa.com/public/uploads/images/${image}`}
+                      onClick={() =>
+                        setsessionform({
+                          ...sessionStorage,
+                          modalShow: true,
+                          id: sData,
+                        })
+                      }
+                    />
                     {/* <Typography>{stationname}</Typography> */}
                   </div>
-                  
-                 
                 </div>
-            
-            </Col>
-          );
-        })}
+              </Col>
+            );
+          })}
       </div>
     </div>
   );
