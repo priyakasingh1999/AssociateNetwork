@@ -6,24 +6,25 @@ import Header from './components/navbar/Header';
 import { Admin } from './components/Admin/Admin';
 import Station from './components/Station-admin/Station';
 import MyStationDashboard from './components/Main-Dashboard/Station/MyStationDashboard';
-import AddAssociates from './components/Main-Dashboard/Station/MyStation/FormPages/AddAssociates';
-// import TextStyle from './components/Main-Dashboard/Station/MyStation/FormPages/TextStyle'
-import { Container,Row , Col } from 'react-bootstrap';
 import Profile from './components/AssociatesProfile/Profile';
+import Login from './components/Authorization/Login';
+
+
 
 
 function App() {
   return (
  <div>
- 
+
     {/* <TextStyle/> */}
    <Header/>   
-   <Profile/>
     <Router>
       <Routes>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/station" element={<Station/>}/>
         <Route path="/MyStationDashboard" element={<MyStationDashboard/>}/>
+        <Route path="/Profile" element={<Profile/>}/>
+        <Route path="/login" element={<Login/>}/>
 
 
         
