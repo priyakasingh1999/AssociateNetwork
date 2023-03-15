@@ -15,6 +15,8 @@ import { Typography } from "@mui/material";
 
 import KeyIcon from "@mui/icons-material/Key";
 import { createGlobalStyle } from "styled-components";
+import { useEffect } from "react";
+import { login } from "../../Api/Authorization/Login";
 
 const Imgsize = createGlobalStyle
 `.Login_img{
@@ -31,6 +33,16 @@ const Imgsize = createGlobalStyle
 const Login = () => {
   const[Username,setUsername]=useState('')
   const[Password,setPassword]=useState(null)
+  const handlelogin=(e)=>{
+    e.preventDefault();
+  
+   console.log( login(Username,Password),"dbfur");
+  
+  }
+ 
+
+
+  console.log(Username,Password);
   return (
     <div sx={{height:'100vh'}} >
         <Imgsize/>
@@ -74,8 +86,14 @@ const Login = () => {
               Username
             </InputLabel>
             <TextField
+            value={Username}
               id="outlined-basic"
               label="Username"
+              onChange={(e)=>setUsername((s)=>{
+               console.log(s);
+                return e.target.value
+
+              })}
               variant="outlined"
             />
             </FormGroup>
@@ -86,6 +104,8 @@ const Login = () => {
             <TextField
               id="outlined-password-input"
               label="Password"
+              value={Password}
+              onChange={(e)=>setPassword(e.target.value)}
               type="password"
               autoComplete="current-password"
             />
@@ -105,6 +125,7 @@ const Login = () => {
                 Lost your password?
               </Typography>
               <Button
+              onClick={handlelogin}
                 variant="contained"
                 sx={{ fontSize: "8px" }}
                 startIcon={<KeyIcon />}
