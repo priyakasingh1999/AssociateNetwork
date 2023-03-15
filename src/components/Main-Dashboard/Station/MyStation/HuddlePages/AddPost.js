@@ -8,6 +8,7 @@ const AddPost = ({ setCurrentStation }) => {
   const editor = useRef(null);
   const [content, setContent] = useState("");
   const [video, setVideo]=useState(false)
+  const[text,settext]=useState('')
   const [Huddledata,setHuddledata]=useState({
     POST:"",
     filehuddle:null,
@@ -47,10 +48,12 @@ const AddPost = ({ setCurrentStation }) => {
         onChange={(newContent) =>setHuddledata({...Huddledata,POST:newContent})}
       />
       <div className="d-flex justify-content-between my-3 px-2">
-        <div>
-          <Button variant="contained" className="btn btn-primary">
-    <input type="file" className="w-100 fs-12" onClick={(e)=>setHuddledata({...Huddledata,filehuddle:e.target.files[0]})}/>
-          </Button>
+        <div className="upload_btn">
+          <div className="upload-btn-wrapper">
+  <button className="btn btn-primary "  >Upload File</button>
+  <input type="file" name="myfile" onClick={(e)=>setHuddledata({...Huddledata,filehuddle:e.target.files[0]})} />
+</div>
+          
         </div>
         <div>
           <Button variant="contained" className="btn btn-primary" onClick={()=>{setVideo(true)}}>

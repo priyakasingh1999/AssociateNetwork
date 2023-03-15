@@ -7,11 +7,35 @@ import { Box } from "@mui/system";
 import AddEasel from "./HuddlePages/AddEasel";
 import AddPoll from "./HuddlePages/AddPoll";
 import { gethuddle } from "../../../../Api/Huddle/Addpost";
+import { createGlobalStyle } from "styled-components";
+
+
+const Styledd = createGlobalStyle
+`
+.search_box{
+  position: relative !important;
+}
+.huddle_search_btn{
+  position: absolute !important;
+    right: 0;
+    top: 5%;
+}
+.huddle_search_btn input:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+  border-radius:0.25rem;
+}
+`;
 
 const Huddle = () => {
   const [currentstation, setCurrentStation] = useState(false);
   const [Easel, setAddEasel]=useState(false);
   const [pollshow , setPollShow]=useState(false)
+  const [search , setSearch]=useState(false)
+   const[text,settext]=useState('')
+
 const[HandleData,setHandleData]=useState([])
   useEffect(()=>{
 gethuddle().then((hdata)=>{
@@ -25,8 +49,9 @@ gethuddle().then((hdata)=>{
   return (
     <>
     <Container>
-      <Row>
-        <div className="py-2 handdle-head bg-white d-flex">
+      <Styledd/>
+      <Row className="search_box">
+        <div className="py-2 handdle-head bg-white d-flex" >
           <Col md={3}>
             <div className="d-flex gap-1 align-items-center">
               <div>
@@ -71,6 +96,7 @@ gethuddle().then((hdata)=>{
           </Col>
           <Col md={3}>
             <div className="d-flex gap-1 align-items-center justify-content-center">
+            
               <div>
                 <p
                   className="fs-12 blue fw-bold cr"
@@ -90,13 +116,19 @@ gethuddle().then((hdata)=>{
               </div>
             </div>
           </Col>
-          <Col md={3}>
-            <div className="d-flex gap-1 align-items-center justify-content-end">
+          <Col md={3}  >
+            <div >
+            <div className="d-flex gap-1 align-items-center justify-content-end" >
               <div className="lh-0">
-                <img src="./img/huddle4.png" />
+                <img src="./img/huddle4.png" onClick={()=>{setSearch(!search)}} />
               </div>
+           
+            </div>
             </div>
           </Col>
+          {search &&
+            <div className="huddle_search_btn p-1"><input type="text" placeholder="Search..." className="px-2 fs-12"/></div>
+          }
         </div>
         {currentstation && (
           <Col md={12} className="p-0 bg-white mb-1">

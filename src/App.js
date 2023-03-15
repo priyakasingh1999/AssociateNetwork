@@ -24,10 +24,7 @@ function App() {
         <Route path="/station" element={<Station/>}/>
         <Route path="/MyStationDashboard" element={<MyStationDashboard/>}/>
         <Route path="/Profile" element={<Profile/>}/>
-        <Route path="/login" element={<Login/>}/>
-
-
-        
+        <Route path="/login" element={<Login/>}/>        
       </Routes>
     </Router>
  </div>

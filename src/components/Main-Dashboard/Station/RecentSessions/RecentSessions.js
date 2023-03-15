@@ -7,6 +7,8 @@ import "./RecentSessions.css";
 import RecentSessionsData from "./RecentSessionsData";
 import axios from "axios";
 import { RecentSes } from "../../../../Api/Session";
+import IconList from "./IconList";
+import { Link } from "@mui/material";
 
 function RecentSessions() {
   const[RecentSessionsData,setRecentSessionsData]=useState([])
@@ -17,27 +19,24 @@ function RecentSessions() {
   })
 
   },[])
+  const [openicon , setOpenIcon]= useState(false)
   return (
     <>
       <div className="session_box">
         <div className="recent_session_header d-flex align-items-center justify-content-between">
           <div className="left_session_icons d-flex align-items-center">
             <div className="priority_session pe-3">
-              <OverlayTrigger
-                delay={{ show: 250, hide: 300 }}
-                overlay={(props) => (
-                  <Tooltip {...props} className="mytooltip">
-                    More Options
-                  </Tooltip>
-                )}
-                placement="bottom"
-              >
+             
                 <img
                   src="img/dot-menu.png"
                   className="global_icon_size cursor-pointer"
                   alt=""
-                />
-              </OverlayTrigger>
+                  onClick={()=>{setOpenIcon(! openicon)}}
+                 />
+                 {openicon &&
+                  <IconList/>
+                 }
+              
             </div>
             <div className="priority_session">
               <OverlayTrigger
@@ -101,7 +100,7 @@ function RecentSessions() {
           </div>
         </div>
 
-        <div class="session_Box">
+        <div class="session_Box pt-1">
 
         {RecentSessionsData.map((sessionData) => {
             const {id,textbox,file,station,created_at,session_associate
@@ -129,11 +128,13 @@ function RecentSessions() {
                           )}
                           placement="right"
                         >
-                          <img
+                         <Link href="/Profile">
+                         <img
                             src={name==='Puja'?`./img/puja1.png`:`./img/john.jpg`}
                             className="global_icon_size cursor-pointer rs_user_profile"
                             alt=""
                           />
+                         </Link>
                         </OverlayTrigger>
                       </div>
                     </div>

@@ -563,8 +563,64 @@ object-fit: cover;
     max-height: 70px;
 }
 .MuiCircularProgress-root.MuiCircularProgress-determinate.MuiCircularProgress-colorPrimary.css-1rn30mb-MuiCircularProgress-root{
-    width: 70px !important;
-    height: 70px !important;
+    width: 60px !important;
+    height: 60px !important;
     border: 7px solid #fff;
     border-radius: 50%;
 }
+@media (min-width: 1200px){
+.css-17p3wh3-MuiGrid-root {
+    -webkit-flex-basis: 88.333333%;
+    -ms-flex-preferred-size: 88.333333%;
+    flex-basis: 87.333333% !important;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 87.333333% !important;
+}
+}
+.css-10hburv-MuiTypography-root{
+    font-size: 13px !important;
+}
+.associates_profile_member{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+.profile_head{
+    background-color: #1280c2 !important;
+    margin: -16px -16px 0 -16px;
+    padding: 5px 16px 5px 16px;
+    align-items: center;
+    border-radius: 0.25rem 0.25rem 0 0;
+    color: #fff;
+}
+/* .profile_icon{
+    position: absolute !important;
+    left: 1.6rem;
+} */
+.profile_icon img{
+    max-width: 20px;
+}
+.upload_btn .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+ .upload_btn .btn {
+   padding: 0.23rem 0.5rem !important;
+  }
+  
+ .upload_btn .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+
