@@ -8,6 +8,10 @@ import Station from './components/Station-admin/Station';
 import MyStationDashboard from './components/Main-Dashboard/Station/MyStationDashboard';
 import Profile from './components/AssociatesProfile/Profile';
 import Login from './components/Authorization/Login';
+import DiscussionReply from './components/Discussion/DiscussionReply';
+import AllAssociates from './components/MyAssociates/AllAssociates';
+import MyAssociatesMember from './components/MyAssociates/MyAssociatesMember';
+
 
 
 
@@ -25,6 +29,9 @@ function App() {
         <Route path="/MyStationDashboard" element={<MyStationDashboard/>}/>
         <Route path="/Profile" element={<Profile/>}/>
         <Route path="/login" element={<Login/>}/>        
+        <Route path="/DiscussionReply" element={<DiscussionReply/>}/>        
+        <Route path="/AllAssociates" element={<AllAssociates/>}/>        
+        <Route path="/MyAssociatesMember" element={<MyAssociatesMember/>}/>        
       </Routes>
     </Router>
  </div>

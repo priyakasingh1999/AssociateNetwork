@@ -25,6 +25,7 @@ var requestOptions = {
 }
 export const gethuddle=()=>{
    return  axios.get('https://assoc.studiomyraa.com/api/huddle').then((data)=>{
+   
     console.log(data.data.results.data);
        return data.data.results.data
     })
